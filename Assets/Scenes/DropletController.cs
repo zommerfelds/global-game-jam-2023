@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DropletController : MonoBehaviour
 {
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,6 @@ public class DropletController : MonoBehaviour
     void Update()
     {
         Move();
-        CheckEnemy();
     }
 
     void Move()
@@ -37,15 +38,12 @@ public class DropletController : MonoBehaviour
         }
     }
 
-    void CheckEnemy()
-    {
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "Enemy")
         {
             Debug.Log("Touched enemy!");
+            gameOverScreen.SetActive(true);
         }
     }
 }
