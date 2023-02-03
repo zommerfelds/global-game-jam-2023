@@ -28,11 +28,11 @@ public class DropletController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0.0f, 0f, -0.1f);
+            transform.Translate(0.0f, -0.1f, 0f);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0.0f, 0f, 0.1f);
+            transform.Translate(0.0f, 0.1f, 0f);
         }
     }
 }
