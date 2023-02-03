@@ -14,6 +14,7 @@ public class DropletController : MonoBehaviour
     void Update()
     {
         Move();
+        CheckEnemy();
     }
 
     void Move()
@@ -33,6 +34,18 @@ public class DropletController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey("up"))
         {
             transform.Translate(0.0f, 0.1f, 0f);
+        }
+    }
+
+    void CheckEnemy()
+    {
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name == "Enemy")
+        {
+            Debug.Log("Touched enemy!");
         }
     }
 }
