@@ -1,0 +1,1 @@
+This folder contains sounds for the game.
