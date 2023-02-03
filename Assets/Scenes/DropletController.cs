@@ -12,8 +12,8 @@ public class DropletController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called at a fixed rate
+    void FixedUpdate()
     {
         Move();
     }
@@ -40,9 +40,9 @@ public class DropletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Enemy")
+        Debug.Log("Touched something: " + other.name);
+        if (other.name.StartsWith("Enemy"))
         {
-            Debug.Log("Touched enemy!");
             gameOverScreen.SetActive(true);
         }
     }

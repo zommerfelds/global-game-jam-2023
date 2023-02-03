@@ -10,8 +10,8 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called at a fixed rate
+    void FixedUpdate()
     {
         transform.Translate(Mathf.Sin(Time.realtimeSinceStartup * 3.0f) * 0.03f, -0.05f, 0f);
     }
