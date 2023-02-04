@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,14 +9,10 @@ public class DropletController : MonoBehaviour
     public bool gameInProgress = true;
 
     private float velX = 0.0f;
-    private static float VEL_X_DELTA = 0.02f;
+    private float velXDelta = 0.02f;
+    private int updatesSinceLastChange = 0;
+
     private static float VEL_X_MAX = 0.2f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -26,6 +20,9 @@ public class DropletController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
+
+            score = 0;
+            gameInProgress = true;
         }
     }
 
@@ -37,43 +34,10 @@ public class DropletController : MonoBehaviour
         }
     }
 
-    // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
         Move();
         Animate();
-    }
-
-    void Move()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            velX += VEL_X_DELTA;
-        }
-        else
-        {
-            velX -= VEL_X_DELTA;
-        }
-
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(0.0f, -0.1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(0.0f, 0.1f, 0f);
-        }
-
-        velX = Mathf.Clamp(velX, -VEL_X_MAX, VEL_X_MAX);
-        transform.Translate(velX, 0f, 0f);
-    }
-
-    void Animate()
-    {
-        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180
-            - velX / VEL_X_MAX * 30 // face in the direction of speed
-            + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
-        );
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -85,6 +49,64 @@ public class DropletController : MonoBehaviour
             gameInProgress = false;
             Time.timeScale = 0;
         }
+    }
+
+    void Move()
+    {
+        velX = ResistFall() ? velX + velXDelta : velX - velXDelta;
+
+        if (ShouldGoDown())
+        {
+            transform.Translate(0.0f, -0.1f, 0f);
+        }
+        else if (ShouldGoUp())
+        {
+            transform.Translate(0.0f, 0.1f, 0f);
+        }
+        else if (ShouldGoLeft())
+        {
+            transform.Translate(-0.1f, 0f, 0f);
+        }
+        else if (ShouldGoRight())
+        {
+            transform.Translate(0.1f, 0f, 0f);
+        }
+
+        velX = Mathf.Clamp(velX, -VEL_X_MAX, VEL_X_MAX);
+        transform.Translate(velX, 0f, 0f);
+    }
+
+    void Animate()
+    {
+        dropImage.transform.rotation = Quaternion.Euler(0, 0, 0
+            - velX / VEL_X_MAX * 30 // face in the direction of speed
+            + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
+        );
+    }
+
+    private bool ResistFall()
+    {
+        return Input.GetKey(KeyCode.Space);
+    }
+
+    private bool ShouldGoUp()
+    {
+        return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+    }
+
+    private bool ShouldGoDown()
+    {
+        return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+    }
+
+    private bool ShouldGoLeft()
+    {
+        return Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+    }
+
+    private bool ShouldGoRight()
+    {
+        return Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
     }
 
     //void Move()

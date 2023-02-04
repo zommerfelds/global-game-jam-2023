@@ -7,8 +7,6 @@ public class EnemyController : MonoBehaviour
     private float timeOffset = 0.0f;
     private float offscreenY = 0.0f;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         timeOffset = Random.Range(0.0f, Mathf.PI * 2);
@@ -21,7 +19,6 @@ public class EnemyController : MonoBehaviour
         ).y * 1.1f;
     }
 
-    // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
         transform.Translate(
