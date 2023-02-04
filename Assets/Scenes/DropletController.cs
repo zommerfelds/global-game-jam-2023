@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DropletController : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class DropletController : MonoBehaviour
     void Start()
     {
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
     }
 
     // FixedUpdate is called at a fixed rate
@@ -44,6 +54,7 @@ public class DropletController : MonoBehaviour
         if (other.name.StartsWith("Enemy"))
         {
             gameOverScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }
