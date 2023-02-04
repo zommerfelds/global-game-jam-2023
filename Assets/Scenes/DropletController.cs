@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,11 +26,12 @@ public class DropletController : MonoBehaviour
 
     private static float VEL_X_MAX = 0.2f;
 
+    [System.Obsolete]
     private void Update()
     {
         if (IsLevelCleared())
         {
-            Debug.Log("Level Cleared ");
+            Debug.Log("Level Cleared: " + score);
             PauseGame();
             UpdateLevel(currentLevel + 1);
             nextNarrationTextIndex = 0;
@@ -56,26 +58,37 @@ public class DropletController : MonoBehaviour
             UpdateLevel(1);
         }
 
-        if (isShowingStory) {
-            if (Input.GetKey(KeyCode.Return))
+        if (isShowingStory)
+        {
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 nextNarrationTextIndex += 1;
+                Debug.Log("Narration Index Inside: " + nextNarrationTextIndex);
             }
 
-            narrationArea.SetActive(true);
+            if (!narrationArea.active)
+            {
+                narrationArea.SetActive(true);
+            }
 
             PauseGame();
             ShowStory();
 
-            if (nextNarrationTextIndex > 3)
+            Debug.Log("Narration Index: " + nextNarrationTextIndex);
+
+            if (IsStoryFinished())
             {
                 isShowingStory = false;
                 gamePaused = false;
-                narrationArea.SetActive(false);
+                if (narrationArea.active)
+                {
+                    narrationArea.SetActive(false);
+                }
             }
         }
     }
 
+    [System.Obsolete]
     private void LateUpdate()
     {
         if (!gamePaused)
@@ -99,8 +112,6 @@ public class DropletController : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
             gameOver.Play();
-
-            nextNarrationTextIndex = 0;
             gameFinished = true;
             PauseGame();
         }
@@ -108,8 +119,14 @@ public class DropletController : MonoBehaviour
 
     private void PauseGame()
     {
-        Time.timeScale = 0;
-        gamePaused = true;
+        if (Time.timeScale != 0)
+        {
+            Time.timeScale = 0;
+        }
+        if (!gamePaused)
+        {
+            gamePaused = true;
+        }
     }
 
     private void Move()
@@ -158,6 +175,28 @@ public class DropletController : MonoBehaviour
         );
     }
 
+    private bool IsStoryFinished()
+    {
+        if (currentLevel == 1)
+        {
+            return nextNarrationTextIndex > 2;
+        }
+        else if (currentLevel == 2)
+        {
+            return nextNarrationTextIndex > 3;
+        }
+        else if (currentLevel == 3)
+        {
+            return nextNarrationTextIndex > 1;
+        }
+        else if (currentLevel == 4)
+        {
+            return nextNarrationTextIndex > 1;
+        }
+
+        return false;
+    }
+
     private bool IsLevelCleared()
     {
         bool isLevelCleared = false;
@@ -169,7 +208,7 @@ public class DropletController : MonoBehaviour
         {
             isLevelCleared = score > 7000;
         }
-        if (currentLevel == 3)
+        else if (currentLevel == 3)
         {
             isLevelCleared = score > 12000;
         }
@@ -234,6 +273,25 @@ public class DropletController : MonoBehaviour
                     "Dingwall in a thriller in January of last year, County " +
                     "have lost their past three encounters with Rangers. " +
                     "Aggregate score? 9 - 1.";
+            }
+            else if (nextNarrationTextIndex == 3)
+            {
+                storyText.text = "Press 1 to move further in trunk or 2 " +
+                    "to move towards a branch for photosynthesis.";
+            }
+        }
+        else if (currentLevel == 3)
+        {
+            if (nextNarrationTextIndex == 1)
+            {
+                storyText.text = "This is the last level of the game.";
+            }
+        }
+        else if (currentLevel == 4)
+        {
+            if (nextNarrationTextIndex == 1)
+            {
+                storyText.text = "This is the end of the game, Well done!!!";
             }
         }
     }
