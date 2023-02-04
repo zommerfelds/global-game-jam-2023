@@ -16,7 +16,7 @@ public class ScoreArea : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (player.gameInProgress)
+        if (Time.timeScale == 1)
         {
             score.text = "Score: " + player.score;
         }

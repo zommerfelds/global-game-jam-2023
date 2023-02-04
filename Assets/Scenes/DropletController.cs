@@ -1,57 +1,69 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DropletController : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public GameObject dropImage;
+    public GameObject narrationArea;
+    public Text storyText;
+    public bool gamePaused;
+
     public int score = 0;
-    public bool gameInProgress = true;
 
     private float velX = 0.0f;
     private float velXDelta = 0.02f;
-    private int updatesSinceLastChange = 0;
 
     private static float VEL_X_MAX = 0.2f;
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (gamePaused)
         {
-            SceneManager.LoadScene(0);
+            Time.timeScale = 0;
+        }
+
+        if (RestartGame())
+        {
             Time.timeScale = 1;
 
             score = 0;
-            gameInProgress = true;
+            gamePaused = false;
+            narrationArea.SetActive(false);
+            gameOverScreen.SetActive(false);
         }
     }
 
     private void LateUpdate()
     {
-        if (gameInProgress)
+        if (!gamePaused)
         {
             score += 1;
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Move();
-        Animate();
+        if (!gamePaused)
+        {
+            Move();
+            Animate();
+        }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Touched something: " + other.name);
         if (other.name.StartsWith("Enemy"))
         {
             gameOverScreen.SetActive(true);
-            gameInProgress = false;
             Time.timeScale = 0;
+            gamePaused = true;
         }
     }
 
-    void Move()
+    private void Move()
     {
         velX = ResistFall() ? velX + velXDelta : velX - velXDelta;
 
@@ -76,12 +88,17 @@ public class DropletController : MonoBehaviour
         transform.Translate(velX, 0f, 0f);
     }
 
-    void Animate()
+    private void Animate()
     {
         dropImage.transform.rotation = Quaternion.Euler(0, 0, 0
             - velX / VEL_X_MAX * 30 // face in the direction of speed
             + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
         );
+    }
+
+    private bool RestartGame()
+    {
+        return gamePaused && Input.GetKey(KeyCode.Return);
     }
 
     private bool ResistFall()
