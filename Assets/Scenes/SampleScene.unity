@@ -2130,7 +2130,15 @@ PrefabInstance:
     - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
       propertyPath: background1
       value: 
-      objectReference: {fileID: 620777397}
+      objectReference: {fileID: 620777399}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: background2
+      value: 
+      objectReference: {fileID: 2008360489}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: background3
+      value: 
+      objectReference: {fileID: 475729313}
     - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
       propertyPath: currentLevel
       value: 1
@@ -2159,6 +2167,38 @@ PrefabInstance:
       propertyPath: level2Material
       value: 
       objectReference: {fileID: 2100000, guid: 92b508a0590d9456282b7d8d301703a4, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level1Material1
+      value: 
+      objectReference: {fileID: 2100000, guid: b02b2556632cc4f00b36412ef093b84c, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level1Material2
+      value: 
+      objectReference: {fileID: 2100000, guid: ce7abeae4fb0e4ec98e18948cc705b0f, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level1Material3
+      value: 
+      objectReference: {fileID: 2100000, guid: d0ed8359e713c4ec0a6246a87f3472c2, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level2Material1
+      value: 
+      objectReference: {fileID: 2100000, guid: 92b508a0590d9456282b7d8d301703a4, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level2Material2
+      value: 
+      objectReference: {fileID: 2100000, guid: ff77fd2e542e44ae0acbb54f57df8a81, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level2Material3
+      value: 
+      objectReference: {fileID: 2100000, guid: ab256b19c76cb4d1da60701adf964b88, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level1BackgroundAddon
+      value: 
+      objectReference: {fileID: 2100000, guid: ab256b19c76cb4d1da60701adf964b88, type: 2}
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: level2BackgroundAddon
+      value: 
+      objectReference: {fileID: 2100000, guid: ff77fd2e542e44ae0acbb54f57df8a81, type: 2}
     - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
       propertyPath: level1BackgroundRenderer
       value: 

@@ -8,9 +8,15 @@ public class DropletController : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject dropImage;
     public GameObject narrationArea;
-    public Renderer background;
-    public Material level1Material;
-    public Material level2Material;
+    public Renderer background1;
+    public Renderer background2;
+    public Renderer background3;
+    public Material level1Material1;
+    public Material level2Material1;
+    public Material level1Material2;
+    public Material level1Material3;
+    public Material level2Material2;
+    public Material level2Material3;
     public Text storyText;
     public AudioSource gameOver;
     public AudioSource movement;
@@ -202,7 +208,7 @@ public class DropletController : MonoBehaviour
         bool isLevelCleared = false;
         if (currentLevel == 1)
         {
-            isLevelCleared = score > 3000;
+            isLevelCleared = score > 300;
         }
         else if (currentLevel == 2)
         {
@@ -221,11 +227,19 @@ public class DropletController : MonoBehaviour
         currentLevel = level;
         if (level == 1)
         {
-            background.material = level1Material;
+            background1.material = level1Material1;
+            background2.material = level1Material2;
+            background3.material = level1Material3;
         }
-        else
+        else if (level == 2)
         {
-            background.material = level2Material;
+            background1.material = level2Material1;
+            background2.material = level2Material2;
+            background3.material = level2Material3;
+        }
+        else if (level == 3)
+        {
+            // Update level3 textures here.
         }
     }
 
