@@ -12,13 +12,20 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         timeOffset = Random.Range(0.0f, Mathf.PI * 2);
-        offscreenY = -Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)).y * 1.1f;
+        offscreenY = -Camera.main.ScreenToWorldPoint(
+            new Vector3(
+                Screen.width,
+                Screen.height,
+                Camera.main.transform.position.z
+            )
+        ).y * 1.1f;
     }
 
     // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
-        transform.Translate(Mathf.Sin(Time.time * 3.0f + timeOffset) * 0.03f, -0.05f, 0f);
+        transform.Translate(
+            Mathf.Sin(Time.time * 3.0f + timeOffset) * 0.03f, -0.05f, 0f);
         if (transform.position.y < offscreenY)
         {
             Destroy(gameObject);
