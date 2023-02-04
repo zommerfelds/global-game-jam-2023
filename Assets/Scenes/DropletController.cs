@@ -7,6 +7,8 @@ public class DropletController : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public GameObject dropImage;
+    public int score = 0;
+    public bool gameInProgress = true;
 
     private float velX = 0.0f;
     private static float VEL_X_DELTA = 0.02f;
@@ -24,6 +26,14 @@ public class DropletController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (gameInProgress)
+        {
+            score += 1;
         }
     }
 
@@ -72,6 +82,7 @@ public class DropletController : MonoBehaviour
         if (other.name.StartsWith("Enemy"))
         {
             gameOverScreen.SetActive(true);
+            gameInProgress = false;
             Time.timeScale = 0;
         }
     }
