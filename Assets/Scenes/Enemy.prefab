@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3982175183051395661}
   - component: {fileID: 3982175183051395662}
   - component: {fileID: 3982175183051395663}
+  - component: {fileID: -2602097706800242261}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a50a6a5dfb1ff54f82ecda7c1ca5d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 0}
 --- !u!58 &3982175183051395662
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +139,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2602097706800242261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3982175183051395658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a50a6a5dfb1ff54f82ecda7c1ca5d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 5741568190233405251, guid: d1b7e4e1ffa414fe8bfcf19c1e7142e1, type: 3}
 --- !u!1 &3982175183264948104
 GameObject:
   m_ObjectHideFlags: 0
