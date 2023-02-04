@@ -12,6 +12,7 @@ public class DropletController : MonoBehaviour
     public Material level2Material;
     public Text storyText;
     public AudioSource gameOver;
+    public AudioSource movement;
     public int score;
 
     private bool gamePaused = true;
@@ -140,6 +141,7 @@ public class DropletController : MonoBehaviour
         //    newPos,
         //    Time.deltaTime * 50);
         transform.Translate(velX, 0f, 0f);
+        movement.Play();
     }
 
     private void Animate()
