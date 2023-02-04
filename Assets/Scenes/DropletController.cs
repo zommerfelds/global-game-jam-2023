@@ -9,7 +9,8 @@ public class DropletController : MonoBehaviour
     public GameObject dropImage;
 
     private float velX = 0.0f;
-    private static float velXDelta = 0.001f;
+    private static float VEL_X_DELTA = 0.02f;
+    private static float VEL_X_MAX = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,24 +31,34 @@ public class DropletController : MonoBehaviour
     void FixedUpdate()
     {
         // Code for normal arrow movement:
-        Move();
-        Animate();
+        // Move();
+        // Animate();
 
         // Code for flappy bird style:
-        // Move2();
+        Move2();
+        Animate2();
     }
 
     void Move2()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            velX += velXDelta;
+            velX += VEL_X_DELTA;
         }
         else
         {
-            velX -= velXDelta;
+            velX -= VEL_X_DELTA;
         }
+        velX = Mathf.Clamp(velX, -VEL_X_MAX, VEL_X_MAX);
         transform.Translate(velX, 0f, 0f);
+    }
+
+    void Animate2()
+    {
+        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180
+            - velX / VEL_X_MAX * 30 // face in the direction of speed
+            + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
+        );
     }
 
     void Move()
