@@ -30,16 +30,11 @@ public class DropletController : MonoBehaviour
     // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
-        // Code for normal arrow movement:
-        // Move();
-        // Animate();
-
-        // Code for flappy bird style:
-        Move2();
-        Animate2();
+        Move();
+        Animate();
     }
 
-    void Move2()
+    void Move()
     {
         if (Input.GetKey(KeyCode.Space))
         {
@@ -49,28 +44,7 @@ public class DropletController : MonoBehaviour
         {
             velX -= VEL_X_DELTA;
         }
-        velX = Mathf.Clamp(velX, -VEL_X_MAX, VEL_X_MAX);
-        transform.Translate(velX, 0f, 0f);
-    }
 
-    void Animate2()
-    {
-        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180
-            - velX / VEL_X_MAX * 30 // face in the direction of speed
-            + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
-        );
-    }
-
-    void Move()
-    {
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(0.1f, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(-0.1f, 0f, 0f);
-        }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(0.0f, -0.1f, 0f);
@@ -79,11 +53,17 @@ public class DropletController : MonoBehaviour
         {
             transform.Translate(0.0f, 0.1f, 0f);
         }
+
+        velX = Mathf.Clamp(velX, -VEL_X_MAX, VEL_X_MAX);
+        transform.Translate(velX, 0f, 0f);
     }
 
     void Animate()
     {
-        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180 + Mathf.Cos(Time.time * 10) * 10);
+        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180
+            - velX / VEL_X_MAX * 30 // face in the direction of speed
+            + Mathf.Cos(Time.time * 30) * 5 // wiggle a bit
+        );
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -95,4 +75,29 @@ public class DropletController : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+    //void Move()
+    //{
+    //    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+    //    {
+    //        transform.Translate(0.1f, 0f, 0f);
+    //    }
+    //    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+    //    {
+    //        transform.Translate(-0.1f, 0f, 0f);
+    //    }
+    //    if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+    //    {
+    //        transform.Translate(0.0f, -0.1f, 0f);
+    //    }
+    //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+    //    {
+    //        transform.Translate(0.0f, 0.1f, 0f);
+    //    }
+    //}
+
+    //void Animate()
+    //{
+    //    dropImage.transform.rotation = Quaternion.Euler(0, 0, 180 + Mathf.Cos(Time.time * 10) * 10);
+    //}
 }
