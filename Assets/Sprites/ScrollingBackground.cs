@@ -9,8 +9,7 @@ public class ScrollingBackground : MonoBehaviour
     [SerializeField]
     private Renderer bgRenderer;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         bgRenderer.material.mainTextureOffset += new Vector2(
             0,

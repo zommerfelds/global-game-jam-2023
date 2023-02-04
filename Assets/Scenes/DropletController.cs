@@ -7,11 +7,16 @@ public class DropletController : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject dropImage;
     public GameObject narrationArea;
+    public Renderer background;
+    public Material level1Material;
+    public Material level2Material;
     public Text storyText;
-    public bool gamePaused;
+    public int score;
 
-    public int score = 0;
-
+    private bool gamePaused = true;
+    private bool gameFinished = false;
+    private bool isShowingStory = true;
+    private int currentLevel = 1;
     private float velX = 0.0f;
     private float velXDelta = 0.02f;
     private int nextNarrationTextIndex = 1;
@@ -20,26 +25,52 @@ public class DropletController : MonoBehaviour
 
     private void Update()
     {
+        if (IsLevelCleared())
+        {
+            Debug.Log("Level Cleared ");
+            PauseGame();
+            UpdateLevel(currentLevel + 1);
+            nextNarrationTextIndex = 0;
+            isShowingStory = true;
+            storyText.text = "Yay!!! Hurray, the level is cleared.";
+        }
+
         if (gamePaused)
         {
             Time.timeScale = 0;
         }
-
-        if (RestartGame())
-        {
-            score = 0;
-            nextNarrationTextIndex += 1;
-            narrationArea.SetActive(true);
-            gameOverScreen.SetActive(false);
-
-            ShowLevel1Story();
-        }
-
-        if (nextNarrationTextIndex > 3)
+        else
         {
             Time.timeScale = 1;
-            gamePaused = false;
-            narrationArea.SetActive(false);
+        }
+
+        if (IsRestartOfGameRequested())
+        {
+            score = 0;
+            nextNarrationTextIndex = 0;
+            isShowingStory = true;
+            gameFinished = false;
+            gameOverScreen.SetActive(false);
+            UpdateLevel(1);
+        }
+
+        if (isShowingStory) {
+            if (Input.GetKey(KeyCode.Return))
+            {
+                nextNarrationTextIndex += 1;
+            }
+
+            narrationArea.SetActive(true);
+
+            PauseGame();
+            ShowStory();
+
+            if (nextNarrationTextIndex > 3)
+            {
+                isShowingStory = false;
+                gamePaused = false;
+                narrationArea.SetActive(false);
+            }
         }
     }
 
@@ -62,15 +93,19 @@ public class DropletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Touched something: " + other.name);
         if (other.name.StartsWith("Enemy"))
         {
             gameOverScreen.SetActive(true);
-            Time.timeScale = 0;
-
             nextNarrationTextIndex = 0;
-            gamePaused = true;
+            gameFinished = true;
+            PauseGame();
         }
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        gamePaused = true;
     }
 
     private void Move()
@@ -118,32 +153,89 @@ public class DropletController : MonoBehaviour
         );
     }
 
-    private void ShowLevel1Story()
+    private bool IsLevelCleared()
     {
-        Debug.Log("Story Page: " + nextNarrationTextIndex);
-        if (nextNarrationTextIndex == 1)
+        bool isLevelCleared = false;
+        if (currentLevel == 1)
         {
-            storyText.text = "Lorem Ipsum is simply dummy text of the "+
-                "printing and typesetting industry. Lorem Ipsum has been the " +
-                "industry's standard dummy text ever since the 1500s, when " +
-                "an unknown printer took a galley of type and scrambled it " +
-                "to make a type specimen book. It has survived not only five " +
-                "centuries, but also the leap into electronic typesetting, " +
-                "remaining essentially unchanged.";
+            isLevelCleared = score > 3000;
         }
-        else if (nextNarrationTextIndex == 2)
+        else if (currentLevel == 2)
         {
-            storyText.text = "Put simply, changing the time scale from its " +
-                "default of one will speed up or slow the game down ? for " +
-                "example, you can run the game at half speed with a time " +
-                "scale of 0.5, or twice as fast with a timescale of 2). " +
-                "Setting it to zero, pauses the game entirely.";
+            isLevelCleared = score > 7000;
+        }
+        if (currentLevel == 3)
+        {
+            isLevelCleared = score > 12000;
+        }
+
+        return isLevelCleared;
+    }
+
+    private void UpdateLevel(int level)
+    {
+        currentLevel = level;
+        if (level == 1)
+        {
+            background.material = level1Material;
+        }
+        else
+        {
+            background.material = level2Material;
         }
     }
 
-    private bool RestartGame()
+    private void ShowStory()
     {
-        return gamePaused && Input.GetKey(KeyCode.Return);
+        if (currentLevel == 1)
+        {
+            if (nextNarrationTextIndex == 1)
+            {
+                storyText.text = "Lorem Ipsum is simply dummy text of the " +
+                    "printing and typesetting industry. Lorem Ipsum has been the " +
+                    "industry's standard dummy text ever since the 1500s, when " +
+                    "an unknown printer took a galley of type and scrambled it " +
+                    "to make a type specimen book. It has survived not only five " +
+                    "centuries, but also the leap into electronic typesetting, " +
+                    "remaining essentially unchanged.";
+            }
+            else if (nextNarrationTextIndex == 2)
+            {
+                storyText.text = "Put simply, changing the time scale from its " +
+                    "default of one will speed up or slow the game down ? for " +
+                    "example, you can run the game at half speed with a time " +
+                    "scale of 0.5, or twice as fast with a timescale of 2). " +
+                    "Setting it to zero, pauses the game entirely.";
+            }
+        }
+        else if (currentLevel == 2)
+        {
+            if (nextNarrationTextIndex == 1)
+            {
+                storyText.text = "Hibernian head coach Lee Johnson tells BBC " +
+                    "Sportsound: Obviously, I've known for a few weeks now, " +
+                    "and I have to say Ron [Gordon] has shown unbelievable " +
+                    "strength and charisma. We've gone through a sticky " +
+                    "patch but what he's dealt with, what his family has " +
+                    "dealt with, we've got every sympathy for him. We wish " +
+                    "him the quickest recovery possible.";
+            }
+            else if (nextNarrationTextIndex == 2)
+            {
+                storyText.text = "You just sense things might be turning for " +
+                    "Malky McKay and Ross County. A win and a draw in their " +
+                    "past two games and just one defeat in their past five " +
+                    "league matches. However, since sharing six goals in " +
+                    "Dingwall in a thriller in January of last year, County " +
+                    "have lost their past three encounters with Rangers. " +
+                    "Aggregate score? 9 - 1.";
+            }
+        }
+    }
+
+    private bool IsRestartOfGameRequested()
+    {
+        return gamePaused && gameFinished && Input.GetKey(KeyCode.Return);
     }
 
     private bool ResistFall()
