@@ -208,7 +208,7 @@ public class DropletController : MonoBehaviour
         bool isLevelCleared = false;
         if (currentLevel == 1)
         {
-            isLevelCleared = score > 300;
+            isLevelCleared = score > 3000;
         }
         else if (currentLevel == 2)
         {
@@ -234,8 +234,8 @@ public class DropletController : MonoBehaviour
         else if (level == 2)
         {
             background1.material = level2Material1;
-            background2.material = level2Material2;
-            background3.material = level2Material3;
+            // background2.material = level2Material2;
+            // background3.material = level2Material3;
         }
         else if (level == 3)
         {
