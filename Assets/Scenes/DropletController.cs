@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DropletController : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject dropImage;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class DropletController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        Animate();
     }
 
     void Move()
@@ -46,6 +48,11 @@ public class DropletController : MonoBehaviour
         {
             transform.Translate(0.0f, 0.1f, 0f);
         }
+    }
+
+    void Animate()
+    {
+        dropImage.transform.rotation = Quaternion.Euler(0, 0, 180 + Mathf.Cos(Time.time * 10) * 10);
     }
 
     void OnTriggerEnter2D(Collider2D other)
