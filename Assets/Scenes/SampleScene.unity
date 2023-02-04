@@ -586,6 +586,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100850911}
   m_CullTransparentMesh: 1
+--- !u!1 &1175373168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1688721193, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+  m_PrefabInstance: {fileID: 3685300960380079119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1217837517
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +921,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
+      propertyPath: dropImage
+      value: 
+      objectReference: {fileID: 1175373168}
     - target: {fileID: -4128359160384311857, guid: d34656f3c68104cb08ce687d655df7c6, type: 3}
       propertyPath: gameOverScreen
       value: 
