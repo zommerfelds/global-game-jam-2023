@@ -11,6 +11,7 @@ public class DropletController : MonoBehaviour
     public Material level1Material;
     public Material level2Material;
     public Text storyText;
+    public AudioSource gameOver;
     public int score;
 
     private bool gamePaused = true;
@@ -96,6 +97,8 @@ public class DropletController : MonoBehaviour
         if (other.name.StartsWith("Enemy"))
         {
             gameOverScreen.SetActive(true);
+            gameOver.Play();
+
             nextNarrationTextIndex = 0;
             gameFinished = true;
             PauseGame();
