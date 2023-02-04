@@ -8,6 +8,9 @@ public class DropletController : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject dropImage;
 
+    private float velX = 0.0f;
+    private static float velXDelta = 0.001f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +19,7 @@ public class DropletController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Return))
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1;
@@ -26,8 +29,25 @@ public class DropletController : MonoBehaviour
     // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
+        // Code for normal arrow movement:
         Move();
         Animate();
+
+        // Code for flappy bird style:
+        // Move2();
+    }
+
+    void Move2()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            velX += velXDelta;
+        }
+        else
+        {
+            velX -= velXDelta;
+        }
+        transform.Translate(velX, 0f, 0f);
     }
 
     void Move()
