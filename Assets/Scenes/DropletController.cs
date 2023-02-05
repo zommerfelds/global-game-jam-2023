@@ -21,6 +21,8 @@ public class DropletController : MonoBehaviour
     public Text storyText;
     public AudioSource gameOver;
     public AudioSource movement;
+    public AudioSource audioHitByParasite;
+    public AudioSource audioHitByWall;
     public int score;
 
     private bool gamePaused = true;
@@ -141,21 +143,25 @@ public class DropletController : MonoBehaviour
     private void Die()
     {
         gameOverScreen.SetActive(true);
-        gameOver.Play();
+        gameOver.PlayDelayed(1);
         gameFinished = true;
         PauseGame();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (gameFinished) return;
         if (other.name.StartsWith("Enemy"))
         {
+            audioHitByParasite.Play();
             Die();
         }
     }
 
     public void OnHitWall()
     {
+        if (gameFinished) return;
+        audioHitByWall.Play();
         Die();
     }
 
@@ -297,18 +303,19 @@ public class DropletController : MonoBehaviour
             {
                 storyText.text = "Welcome little water drop!\n" +
                     "Thank you for answering the call of this tree.\n\n" +
-                    "Press SPACE to continue.";
+                    "Press ENTER to continue.";
             }
             else if (nextNarrationTextIndex == 2)
             {
                 storyText.text = "You find yourself underground in the roots where you start your journey.\n" +
                     "You are feeling a force pulling you upward - follow it!\n\n" +
-                    "Press SPACE to continue.";
+                    "Press ENTER to continue.";
             }
             else if (nextNarrationTextIndex == 3)
             {
                 storyText.text = "But wait - something's not right. The tree is being attacked by parasites. Don’t let them get you!\n\n" +
-                    "Hold SPACE to move around.";
+                    "Hold SPACE to move around.\n" +
+                    "Press ENTER to continue.";
             }
         }
         else if (currentLevel == 2)
@@ -332,8 +339,8 @@ public class DropletController : MonoBehaviour
         {
             if (nextNarrationTextIndex == 1)
             {
-                 storyText.text = "You’ve done it! You’ve reached the top branch of the tree and found a cozy leaf\n\n" +
-                    "A different kind of force is pulling you up again and you feel a tingling sensation. Slowly, you change into vapor for your next journey";
+                storyText.text = "You’ve done it! You’ve reached the top branch of the tree and found a cozy leaf\n\n" +
+                   "A different kind of force is pulling you up again and you feel a tingling sensation. Slowly, you change into vapor for your next journey";
             }
         }
     }
