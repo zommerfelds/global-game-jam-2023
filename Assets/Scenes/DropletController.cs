@@ -293,8 +293,11 @@ public class DropletController : MonoBehaviour
         else
         {
             audioGameEnd1.Play();
-            videoPlayer.Play();
             audioGameEnd2.PlayDelayed(1);
+
+            // Show fireworks.
+            videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
+            videoPlayer.Play();
         }
         GameObject.Find("MonsterSpawner").
         GetComponent<MonsterSpawner>().currentLevel = level;
