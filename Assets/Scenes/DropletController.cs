@@ -56,12 +56,14 @@ public class DropletController : MonoBehaviour
 
         if (IsRestartOfGameRequested())
         {
-            score = 0;
+            // Reloading the whole scene resets all the objects to the right place.
+            /*score = 0;
             nextNarrationTextIndex = 0;
             isShowingStory = true;
             gameFinished = false;
             gameOverScreen.SetActive(false);
-            UpdateLevel(1);
+            UpdateLevel(1);*/
+            SceneManager.LoadScene(0);
         }
 
         if (isShowingStory)
