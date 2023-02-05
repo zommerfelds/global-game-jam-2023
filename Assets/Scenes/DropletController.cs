@@ -270,15 +270,15 @@ public class DropletController : MonoBehaviour
         bool isLevelCleared = false;
         if (currentLevel == 1)
         {
-            isLevelCleared = score > 30;
+            isLevelCleared = score > 3000;
         }
         else if (currentLevel == 2)
         {
-            isLevelCleared = score > 70;
+            isLevelCleared = score > 7000;
         }
         else if (currentLevel == 3)
         {
-            isLevelCleared = score > 120;
+            isLevelCleared = score > 12000;
         }
 
         return isLevelCleared;
