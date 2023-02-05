@@ -32,6 +32,8 @@ public class DropletController : MonoBehaviour
 
     private static float VEL_X_MAX = 0.2f;
 
+
+
     [System.Obsolete]
     private void Update()
     {
@@ -150,6 +152,10 @@ public class DropletController : MonoBehaviour
     private void Move()
     {
         velX = ResistFall() ? velX + velXDelta : velX - velXDelta;
+        if (ResistFall() && !movement.isPlaying)
+        {
+            movement.Play();
+        }
 
         if (ShouldGoDown())
         {
@@ -176,7 +182,6 @@ public class DropletController : MonoBehaviour
         //    newPos,
         //    Time.deltaTime * 50);
         transform.Translate(velX, 0f, 0f);
-        movement.Play();
     }
 
     private void Animate()
