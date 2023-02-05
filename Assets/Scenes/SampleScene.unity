@@ -1566,6 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster1: {fileID: 3982175183051395658, guid: 4f0cd960c85b1c84eacc8caa667d3ee8, type: 3}
   monster2: {fileID: 3982175183051395658, guid: 7f58c94a693083741a28cc0aada85499, type: 3}
+  monster3: {fileID: 3982175183051395658, guid: 7742e6c1a5fcb534c82e3b62b199e142, type: 3}
   currentLevel: 0
 --- !u!1 &1530922375
 GameObject:

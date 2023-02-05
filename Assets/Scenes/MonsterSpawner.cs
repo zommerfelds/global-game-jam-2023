@@ -7,6 +7,7 @@ public class MonsterSpawner : MonoBehaviour
 {
     public GameObject monster1;
     public GameObject monster2;
+    public GameObject monster3;
 
     public int currentLevel;
 
@@ -44,6 +45,13 @@ public class MonsterSpawner : MonoBehaviour
                 if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.5)
                 {
                     monster = monster2;
+                }
+            }
+            else if (currentLevel == 3)
+            {
+                if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.2)
+                {
+                    monster = monster3;
                 }
             }
             Instantiate(monster, pointToSpawn, Quaternion.identity);
