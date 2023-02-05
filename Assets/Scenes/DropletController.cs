@@ -114,15 +114,25 @@ public class DropletController : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        gameOverScreen.SetActive(true);
+        gameOver.Play();
+        gameFinished = true;
+        PauseGame();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name.StartsWith("Enemy"))
         {
-            gameOverScreen.SetActive(true);
-            gameOver.Play();
-            gameFinished = true;
-            PauseGame();
+            Die();
         }
+    }
+
+    public void OnHitWall()
+    {
+        Die();
     }
 
     private void PauseGame()

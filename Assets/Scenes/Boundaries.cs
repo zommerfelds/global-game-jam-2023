@@ -28,8 +28,13 @@ public class Boundaries : MonoBehaviour
     void LateUpdate()
     {
         Vector3 viewPos = transform.position;
-        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1, screenBounds.x);
-        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1, screenBounds.y);
-        transform.position = viewPos;
+        //viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1, screenBounds.x);
+        //viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1, screenBounds.y);
+        //transform.position = viewPos;
+
+        if (Mathf.Abs(viewPos.x) > screenBounds.x)
+        {
+            gameObject.GetComponent<DropletController>().OnHitWall();
+        }
     }
 }
