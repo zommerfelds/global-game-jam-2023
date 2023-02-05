@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy2Controller : MonoBehaviour
 {
     private float timeOffset = 0.0f;
     private float offscreenY = 0.0f;

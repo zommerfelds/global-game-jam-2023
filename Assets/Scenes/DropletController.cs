@@ -265,7 +265,7 @@ public class DropletController : MonoBehaviour
             }
             else if (nextNarrationTextIndex == 2)
             {
-                storyText.text = "Hold SPACE to move right.";
+                storyText.text = "Don't let the parasite get you!\n\nHold SPACE to move right.";
             }
         }
         else if (currentLevel == 2)
