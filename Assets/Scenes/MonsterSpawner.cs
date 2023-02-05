@@ -33,7 +33,7 @@ public class MonsterSpawner : MonoBehaviour
                     -screenBounds.x * 0.8f,
                     screenBounds.x * 0.8f
                 ),
-                screenBounds.y * 1.1f,
+                screenBounds.y * 1.5f,
                 0.0f
             );
 
@@ -49,9 +49,14 @@ public class MonsterSpawner : MonoBehaviour
             }
             else if (currentLevel == 3)
             {
-                if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.2)
+                var r = UnityEngine.Random.Range(0.0f, 1.0f);
+                if (r < 0.2)
                 {
                     monster = monster3;
+                }
+                else if (r < 0.4)
+                {
+                    monster = monster2;
                 }
             }
             Instantiate(monster, pointToSpawn, Quaternion.identity);

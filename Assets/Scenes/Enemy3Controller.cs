@@ -21,8 +21,10 @@ public class Enemy3Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(0.0f, -0.08f, 0f);
-        if (transform.position.y < offscreenY)
+        transform.Translate(0.0f, -0.04f, 0f);
+        var s = 3.0f + Mathf.Sin(Time.time * 1.0f + timeOffset) * 1.5f;
+        transform.localScale = new Vector3(s, s, 1);
+        if (transform.position.y < offscreenY * 2)
         {
             Destroy(gameObject);
         }

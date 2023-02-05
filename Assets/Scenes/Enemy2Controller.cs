@@ -24,7 +24,7 @@ public class Enemy2Controller : MonoBehaviour
         var playerPos = GameObject.Find("Player").transform.position;
         var xTranslate = (transform.position.x > playerPos.x ? -1 : 1) * 0.05f;
         transform.Translate(xTranslate, -0.08f, 0f);
-        if (transform.position.y < offscreenY)
+        if (transform.position.y < offscreenY * 2)
         {
             Destroy(gameObject);
         }
