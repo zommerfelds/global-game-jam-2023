@@ -23,6 +23,9 @@ public class DropletController : MonoBehaviour
     public AudioSource movement;
     public AudioSource audioHitByParasite;
     public AudioSource audioHitByWall;
+    public AudioSource audioGameEnd1;
+    public AudioSource audioGameEnd2;
+    public AudioSource audioLevelEnd;
     public int score;
 
     private bool gamePaused = true;
@@ -273,7 +276,9 @@ public class DropletController : MonoBehaviour
 
     private void UpdateLevel(int level)
     {
-        GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>().currentLevel = level;
+        audioLevelEnd.Play();
+        GameObject.Find("MonsterSpawner").
+        GetComponent<MonsterSpawner>().currentLevel = level;
         currentLevel = level;
         if (level == 1)
         {
