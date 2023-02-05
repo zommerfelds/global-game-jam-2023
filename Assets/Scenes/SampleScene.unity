@@ -1662,6 +1662,7 @@ MonoBehaviour:
   level1Material3: {fileID: 2100000, guid: d0ed8359e713c4ec0a6246a87f3472c2, type: 2}
   level2Material2: {fileID: 2100000, guid: ab256b19c76cb4d1da60701adf964b88, type: 2}
   level2Material3: {fileID: 2100000, guid: ff77fd2e542e44ae0acbb54f57df8a81, type: 2}
+  level3Material1: {fileID: 2100000, guid: 203fe6eacb25bab49ace4f1cb199f574, type: 2}
   storyText: {fileID: 198715995}
   gameOver: {fileID: 285006068}
   movement: {fileID: 1988781982}

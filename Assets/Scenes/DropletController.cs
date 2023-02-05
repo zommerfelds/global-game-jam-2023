@@ -17,6 +17,7 @@ public class DropletController : MonoBehaviour
     public Material level1Material3;
     public Material level2Material2;
     public Material level2Material3;
+    public Material level3Material1;
     public Text storyText;
     public AudioSource gameOver;
     public AudioSource movement;
@@ -269,12 +270,14 @@ public class DropletController : MonoBehaviour
         else if (level == 2)
         {
             background1.material = level2Material1;
-            // background2.material = level2Material2;
-            // background3.material = level2Material3;
+            background2.enabled = false;
+            background3.enabled = false;
         }
         else if (level == 3)
         {
-            // Update level3 textures here.
+            background1.material = level3Material1;
+            background2.enabled = false;
+            background3.enabled = false;
         }
     }
 
