@@ -41,7 +41,7 @@ public class MonsterSpawner : MonoBehaviour
             var monster = monster1;
             if (currentLevel == 2)
             {
-                if (UnityEngine.Random.Range(0, 1) < 0.5)
+                if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.5)
                 {
                     monster = monster2;
                 }

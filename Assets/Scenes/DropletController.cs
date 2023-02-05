@@ -37,6 +37,17 @@ public class DropletController : MonoBehaviour
     [System.Obsolete]
     private void Update()
     {
+        // Hack: keys for debugging and switching between levels
+        // Maybe disable in final product
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            UpdateLevel(2);
+        }
+        else if (Input.GetKey(KeyCode.Alpha3))
+        {
+            UpdateLevel(3);
+        }
+
         if (IsLevelCleared())
         {
             Debug.Log("Level Cleared: " + score);
@@ -73,7 +84,7 @@ public class DropletController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 nextNarrationTextIndex += 1;
-                Debug.Log("Narration Index Inside: " + nextNarrationTextIndex);
+                //Debug.Log("Narration Index Inside: " + nextNarrationTextIndex);
             }
 
             if (!narrationArea.active)
@@ -84,7 +95,7 @@ public class DropletController : MonoBehaviour
             PauseGame();
             ShowStory();
 
-            Debug.Log("Narration Index: " + nextNarrationTextIndex);
+            //Debug.Log("Narration Index: " + nextNarrationTextIndex);
 
             if (IsStoryFinished())
             {
