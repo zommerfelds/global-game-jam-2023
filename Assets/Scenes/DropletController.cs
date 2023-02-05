@@ -41,21 +41,27 @@ public class DropletController : MonoBehaviour
         // Maybe disable in final product
         if (Input.GetKey(KeyCode.Alpha2))
         {
+            PauseGame();
             UpdateLevel(2);
+            nextNarrationTextIndex = 1;
+            isShowingStory = true;
+            ShowStory();
         }
         else if (Input.GetKey(KeyCode.Alpha3))
         {
+            PauseGame();
             UpdateLevel(3);
+            nextNarrationTextIndex = 1;
+            isShowingStory = true;
+            ShowStory();
         }
 
         if (IsLevelCleared())
         {
-            Debug.Log("Level Cleared: " + score);
             PauseGame();
             UpdateLevel(currentLevel + 1);
-            nextNarrationTextIndex = 0;
+            nextNarrationTextIndex = 1;
             isShowingStory = true;
-            storyText.text = "Yay!!! Hurray, the level is cleared.";
         }
 
         if (gamePaused)
@@ -213,11 +219,11 @@ public class DropletController : MonoBehaviour
     {
         if (currentLevel == 1)
         {
-            return nextNarrationTextIndex > 2;
+            return nextNarrationTextIndex > 3;
         }
         else if (currentLevel == 2)
         {
-            return nextNarrationTextIndex > 3;
+            return nextNarrationTextIndex > 1;
         }
         else if (currentLevel == 3)
         {
@@ -278,46 +284,37 @@ public class DropletController : MonoBehaviour
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "Welcome to the tree root, little water drop!\nYou are feeling a force pulling you upward.\n\nPress SPACE to continue.";
+                storyText.text = "Welcome little water drop!\n" +
+                    "Thank you for answering the call of this tree.\n\n" +
+                    "Press SPACE to continue.";
             }
             else if (nextNarrationTextIndex == 2)
             {
-                storyText.text = "Don't let the parasite get you!\n\nHold SPACE to move right.";
+                storyText.text = "You find yourself underground in the roots where you start your journey.\n" +
+                    "You are feeling a force pulling you upward - follow it!\n\n" +
+                    "Press SPACE to continue.";
+            }
+            else if (nextNarrationTextIndex == 3)
+            {
+                storyText.text = "But wait - something's not right. The tree is being attacked by parasites. Don’t let them get you!\n\n" +
+                    "Hold SPACE to move around.";
             }
         }
         else if (currentLevel == 2)
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "Hibernian head coach Lee Johnson tells BBC " +
-                    "Sportsound: Obviously, I've known for a few weeks now, " +
-                    "and I have to say Ron [Gordon] has shown unbelievable " +
-                    "strength and charisma. We've gone through a sticky " +
-                    "patch but what he's dealt with, what his family has " +
-                    "dealt with, we've got every sympathy for him. We wish " +
-                    "him the quickest recovery possible.";
-            }
-            else if (nextNarrationTextIndex == 2)
-            {
-                storyText.text = "You just sense things might be turning for " +
-                    "Malky McKay and Ross County. A win and a draw in their " +
-                    "past two games and just one defeat in their past five " +
-                    "league matches. However, since sharing six goals in " +
-                    "Dingwall in a thriller in January of last year, County " +
-                    "have lost their past three encounters with Rangers. " +
-                    "Aggregate score? 9 - 1.";
-            }
-            else if (nextNarrationTextIndex == 3)
-            {
-                storyText.text = "Press 1 to move further in trunk or 2 " +
-                    "to move towards a branch for photosynthesis.";
+                storyText.text = "That was close!\n" +
+                    "You have reached the trunk. You notice that this part of the tree is more sick. Be careful!\n\n" +
+                    "Press SPACE to continue.";
             }
         }
         else if (currentLevel == 3)
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "This is the last level of the game.";
+                storyText.text = "You reached the branch! Space is getting more narrow here.\n\n" +
+                    "Press SPACE to continue.";
             }
         }
         else if (currentLevel == 4)
