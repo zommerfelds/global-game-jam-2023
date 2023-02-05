@@ -68,7 +68,7 @@ public class DropletController : MonoBehaviour
 
         if (isShowingStory)
         {
-            if (Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 nextNarrationTextIndex += 1;
                 Debug.Log("Narration Index Inside: " + nextNarrationTextIndex);
@@ -251,21 +251,11 @@ public class DropletController : MonoBehaviour
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "Lorem Ipsum is simply dummy text of the " +
-                    "printing and typesetting industry. Lorem Ipsum has been the " +
-                    "industry's standard dummy text ever since the 1500s, when " +
-                    "an unknown printer took a galley of type and scrambled it " +
-                    "to make a type specimen book. It has survived not only five " +
-                    "centuries, but also the leap into electronic typesetting, " +
-                    "remaining essentially unchanged.";
+                storyText.text = "Welcome to the tree root, little water drop!\nYou are feeling a force pulling you upward.\n\nPress SPACE to continue.";
             }
             else if (nextNarrationTextIndex == 2)
             {
-                storyText.text = "Put simply, changing the time scale from its " +
-                    "default of one will speed up or slow the game down ? for " +
-                    "example, you can run the game at half speed with a time " +
-                    "scale of 0.5, or twice as fast with a timescale of 2). " +
-                    "Setting it to zero, pauses the game entirely.";
+                storyText.text = "Hold SPACE to move right.";
             }
         }
         else if (currentLevel == 2)
