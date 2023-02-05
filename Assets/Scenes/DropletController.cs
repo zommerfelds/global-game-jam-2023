@@ -33,7 +33,11 @@ public class DropletController : MonoBehaviour
 
     private static float VEL_X_MAX = 0.2f;
 
-
+    private void Start()
+    {
+        movement.volume = 0.0f;
+        movement.Play();
+    }
 
     [System.Obsolete]
     private void Update()
@@ -170,9 +174,13 @@ public class DropletController : MonoBehaviour
     private void Move()
     {
         velX = ResistFall() ? velX + velXDelta : velX - velXDelta;
-        if (ResistFall() && !movement.isPlaying)
+        if (ResistFall())
         {
-            movement.Play();
+            movement.volume = Mathf.Clamp(movement.volume + 1.0f * Time.deltaTime, 0.0f, 1.0f);
+        }
+        else
+        {
+            movement.volume = Mathf.Clamp(movement.volume - 3.0f * Time.deltaTime, 0.0f, 1.0f);
         }
 
         if (ShouldGoDown())
