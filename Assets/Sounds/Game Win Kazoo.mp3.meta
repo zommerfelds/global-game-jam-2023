@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2efeed757ad077f4d87856274d071195
+=======
+guid: 6bb7bc7e02cb34bd7979657019bc4795
+>>>>>>> 532956e (Game win sound meta file)
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
