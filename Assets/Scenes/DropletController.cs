@@ -92,7 +92,7 @@ public class DropletController : MonoBehaviour
 
         if (isShowingStory)
         {
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 nextNarrationTextIndex += 1;
                 //Debug.Log("Narration Index Inside: " + nextNarrationTextIndex);
@@ -316,23 +316,24 @@ public class DropletController : MonoBehaviour
             if (nextNarrationTextIndex == 1)
             {
                 storyText.text = "That was close!\n" +
-                    "You have reached the trunk. You notice that this part of the tree is more sick. Be careful!\n\n" +
-                    "Press SPACE to continue.";
+                    "You’ve reached the trunk! You notice that this part of the tree is more sick. Be careful!\n\n" +
+                    "Press ENTER to continue.";
             }
         }
         else if (currentLevel == 3)
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "You reached the branch! Space is getting more narrow here.\n\n" +
-                    "Press SPACE to continue.";
+                storyText.text = "You’re almost to a leaf! Keep going and keep avoiding those parasites!\n\n" +
+                    "Press ENTER to continue.";
             }
         }
         else if (currentLevel == 4)
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "This is the end of the game, Well done!!!";
+                 storyText.text = "You’ve done it! You’ve reached the top branch of the tree and found a cozy leaf\n\n" +
+                    "A different kind of force is pulling you up again and you feel a tingling sensation. Slowly, you change into vapor for your next journey";
             }
         }
     }
