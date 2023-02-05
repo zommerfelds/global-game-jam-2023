@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class DropletController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class DropletController : MonoBehaviour
     public AudioSource audioGameEnd1;
     public AudioSource audioGameEnd2;
     public AudioSource audioLevelEnd;
+    public VideoPlayer videoPlayer;
     public int score;
 
     private bool gamePaused = true;
@@ -268,15 +270,15 @@ public class DropletController : MonoBehaviour
         bool isLevelCleared = false;
         if (currentLevel == 1)
         {
-            isLevelCleared = score > 3000;
+            isLevelCleared = score > 30;
         }
         else if (currentLevel == 2)
         {
-            isLevelCleared = score > 7000;
+            isLevelCleared = score > 70;
         }
         else if (currentLevel == 3)
         {
-            isLevelCleared = score > 12000;
+            isLevelCleared = score > 120;
         }
 
         return isLevelCleared;
@@ -291,6 +293,7 @@ public class DropletController : MonoBehaviour
         else
         {
             audioGameEnd1.Play();
+            videoPlayer.Play();
             audioGameEnd2.PlayDelayed(1);
         }
         GameObject.Find("MonsterSpawner").
