@@ -65,6 +65,14 @@ public class DropletController : MonoBehaviour
             isShowingStory = true;
             ShowStory();
         }
+        else if (Input.GetKey(KeyCode.Alpha4))
+        {
+            PauseGame();
+            UpdateLevel(4);
+            nextNarrationTextIndex = 1;
+            isShowingStory = true;
+            ShowStory();
+        }
 
         if (IsLevelCleared())
         {
@@ -276,7 +284,15 @@ public class DropletController : MonoBehaviour
 
     private void UpdateLevel(int level)
     {
-        audioLevelEnd.Play();
+        if (level <= 3)
+        {
+            audioLevelEnd.Play();
+        }
+        else
+        {
+            audioGameEnd1.Play();
+            audioGameEnd2.PlayDelayed(1);
+        }
         GameObject.Find("MonsterSpawner").
         GetComponent<MonsterSpawner>().currentLevel = level;
         currentLevel = level;
@@ -344,8 +360,8 @@ public class DropletController : MonoBehaviour
         {
             if (nextNarrationTextIndex == 1)
             {
-                storyText.text = "You’ve done it! You’ve reached the top branch of the tree and found a cozy leaf\n\n" +
-                   "A different kind of force is pulling you up again and you feel a tingling sensation. Slowly, you change into vapor for your next journey";
+                storyText.text = "You’ve done it! You’ve reached the top branch of the tree and found a cozy leaf\n" +
+                   "A different kind of force is pulling you up again and you feel a tingling sensation. Slowly, you change into vapor for your next journey.";
             }
         }
     }
