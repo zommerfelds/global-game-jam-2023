@@ -22,7 +22,7 @@ public class Enemy1Controller : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(
-            Mathf.Sin(Time.time * 3.0f + timeOffset) * 0.03f, -0.05f, 0f);
+            Mathf.Sin(Time.time * 3.0f + timeOffset) * 0.03f, -0.08f, 0f);
         if (transform.position.y < offscreenY)
         {
             Destroy(gameObject);

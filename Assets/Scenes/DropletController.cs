@@ -241,6 +241,7 @@ public class DropletController : MonoBehaviour
 
     private void UpdateLevel(int level)
     {
+        GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawner>().currentLevel = level;
         currentLevel = level;
         if (level == 1)
         {

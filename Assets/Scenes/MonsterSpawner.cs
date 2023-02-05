@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject monster;
+    public GameObject monster1;
+    public GameObject monster2;
+
+    public int currentLevel;
 
     void Start()
     {
-        // TODO: make this repeat
         StartCoroutine(SpawnMonster());
     }
 
@@ -34,6 +36,16 @@ public class MonsterSpawner : MonoBehaviour
                 0.0f
             );
 
+            Debug.Log("New monster for level " + currentLevel);
+
+            var monster = monster1;
+            if (currentLevel == 2)
+            {
+                if (UnityEngine.Random.Range(0, 1) < 0.5)
+                {
+                    monster = monster2;
+                }
+            }
             Instantiate(monster, pointToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(1.0f);
         }

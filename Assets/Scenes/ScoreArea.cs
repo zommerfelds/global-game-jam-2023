@@ -11,7 +11,7 @@ public class ScoreArea : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Circle").GetComponent<DropletController>();
+        player = GameObject.Find("Player").GetComponent<DropletController>();
     }
 
     private void LateUpdate()
